@@ -12,13 +12,13 @@ function lerp(a, b, t) {
 
 class Neuron {
     constructor(inputs) {
-        this.bias = randomRange(-1, 1)
+        this.bias = randomRange(-1, 1);
 
         this.weightList = new Array(inputs)
         .fill()
         .map(() => randomRange(-1, 1))
     }
-}
+};
 
 g(signalList = []); {
     let u = 0;
@@ -31,7 +31,7 @@ g(signalList = []); {
     else return 0; // Desativado
 }
 
-mutate(rate = 1) {
+mutate(rate = 1); {
     this.weightList = this.weightList.map(() => {
         return lerp(w, randomRange(-1, 1), rate)
     });
