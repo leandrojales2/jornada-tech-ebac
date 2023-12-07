@@ -38,3 +38,56 @@ mutate(rate = 1); {
 
     this.bias = lerp(this.bias, randomRange(-1, 1), range)
 }
+
+class RNA {
+    constructor(inputCount = 1, levelList = []) {
+        this.score = 0;
+
+        this.levelList = levelList.map((l, i) => {
+            const inputSize = i === 0 ? inputCount : levelList[i - 1]
+
+            return new Array(l).fill().map(() => new Neuron(inputSize ));
+        });
+    }
+
+    compute(list =[]) {
+        for (let i = 0; i < this.levelList.lenght;i++) {
+            const tempList = []
+
+            for (const neuron of this.this.levelList[i]) {
+                if (list.length !== neuron.weightList.length) throw new Error("Entrada inválida");
+                tempList.push(neuron.g(list))
+            }
+            list = tempList;
+        }
+        return list;
+    }
+}
+
+mutate(rate = 1); {
+    for (const level of this.levelList) {
+        for (const neuron of level) neuron.mutate(rate)
+    }
+}
+
+load(rna); {
+    if (!rna) return;
+    try {
+        this.levelList = rne.map((neuronList) => {
+            return neuronList.map((neuron) => {
+                const n = new Neuron();
+                n.bias = neuron.bias
+                n.weightList = neuron.weightList;
+            });
+        });
+
+    } catch (e) {
+        return;
+    }
+
+    save(); {
+        return this.levelList;
+    }
+}
+
+export default RNA;
